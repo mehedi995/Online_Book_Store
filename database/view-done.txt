@@ -1,0 +1,5 @@
+1.create view SHOW_BOOK_INFO(BOOK_NAME,EDITION,ISBN_NO,PRICE,PAGES,CATEGORY_NAME,SUB_CATEGORY_NAME,AUTHOR_NAME)  
+as SELECT b.book_name,b.edition,b.isbn,b.price,b.page,b.cat_name,b.subcat_nam11e,a.author_name from books b,authors a where b.author_id=a.author_id;  
+
+2.create view ORDER_CHART(ORDER_ID,ORDER_STATUS,PRICE,TOTAL,DUE,PAYMENT_TYPE,ORDER_DATE,QUANTITY,USER_ID)  
+as SELECT o.order_id,o.status,o.price,o.total,o.due,o.order_date,od.quantity,od.user_id from orders o,order_details od where o.order_id= od.order_id ;

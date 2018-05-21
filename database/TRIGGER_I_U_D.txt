@@ -1,0 +1,17 @@
+create or replace trigger books_tr
+before insert or delete or update on books
+for each row
+enable
+
+declare 
+DB_user varchar2(30);
+select user into DB_user from dual
+IF INSERTING THEN
+dbms_output.put_line('One row inserted by'||DB_user)
+ELSIF DELETING THEN
+dbms_output.put_line('One row deleted by'||DB_user)
+ELSIF UPDATING THEN
+dbms_output.put_line('One row updated by'||DB_user)
+END IF;
+end;
+/

@@ -1,0 +1,302 @@
+create table Books
+(
+book_id int NOT NULL Primary Key,
+book_name varchar2(200),
+edition varchar2(50),
+isbn int ,
+language varchar2(50),
+price number(6),
+discount number (6),
+page int,
+cat_name varchar2(50),
+subcat_name varchar2(50),
+author_id int,
+publisher_id int
+);
+
+create sequence seq_book_id
+start with 10000
+increment by 1
+minvalue 1
+maxvalue 99999
+cache 10;
+
+insert into books values (seq_book_id.nextval, 'Digital Logic Design', '2nd', 44356751,'English', 250, 8, 220, 'Engineering', 'Electrical Engineering', 501, 2001);
+insert into books values (seq_book_id.nextval, 'Introduction to Database', '5th', 33256751,'English', 300, 7, 670, 'Science', 'Computer Science', 502, 2001);
+
+select * from books;
+
+drop table books;
+drop sequence seq_book_id;
+
+DELETE FROM books WHERE book_id=10000;
+
+UPDATE books
+SET book_name = 'Advanced Database Book', price='350',CAT_NAME= 'Science',SUBCAT_NAME='CS'
+WHERE book_ID = 10002;
+----------------------------------------------------------------
+create table users
+(
+user_id int NOT NULL PRIMARY KEY,
+user_name varchar2(50),
+user_email varchar2(50),
+user_phone varchar2(14),
+password varchar2(15),
+user_address varchar2(100),
+user_district varchar2(20),
+user_city varchar2(20),
+created_date date
+);
+
+create sequence seq_user_id
+start with 1
+increment by 1
+minvalue 1
+maxvalue 9999
+nocache;
+
+insert into users values(seq_user_id.nextval, 'mehedi', 'hmehedi995@gmail.com', '01764760509','1234','uttora,dhaka','dhaka','dhaka','21-apr-2018');
+
+select * from users;
+
+drop table users;
+drop sequence seq_user_id;
+
+DELETE FROM users WHERE user_id=3;
+
+UPDATE users
+SET user_name = 'rimu', user_phone='0176666626',user_email='rimu@yahoo.com'
+WHERE user_ID = 2;
+---------------------------------------------------------------------------------
+
+create table authors
+(
+author_id int not null primary Key,
+author_name varchar2(50),
+author_email varchar2(30),
+author_phone varchar2(14),
+author_social_id varchar2(100)
+);
+
+create sequence seq_author_id
+start with 500
+increment by 5
+minvalue 500
+maxvalue 5000
+nocache;
+
+insert into authors values(seq_author_id.nextval,'Donal Norman','norman@gmail.com','01700000001','https://www.facebook.com/don.norman.18');
+
+select * from authors;
+drop table authors;
+drop sequence seq_author_id;
+
+DELETE FROM authors WHERE author_id=510;
+
+UPDATE authors
+SET author_name = 'Pressman',author_email='pressman@gmail.com', author_social_id='https://www.facebook.com/pressman.18'
+WHERE author_ID = 505;
+----------------------------------------------------------------------------------------------
+
+create table publishers
+(
+publisher_id int not null primary Key,
+publisher_name varchar2(50),
+publisher_email varchar2(30),
+publisher_phone varchar2(14),
+publisher_address varchar(100),
+publisher_social_id varchar2(100)
+);
+
+create sequence seq_publisher_id
+start with 1000
+increment by 10
+minvalue 1000
+maxvalue 2000
+nocache;
+
+insert into publishers values(seq_publisher_id.nextval,'Rimu Publications','rimu@publications.com','01702300001','BanglaBazar, Dhaka','https://www.facebook.com/rimuahmmed.raj');
+
+select * from publishers;
+drop table publishers;
+drop sequence seq_publisher_id;
+
+DELETE FROM publishers WHERE publisher_id=1010;
+
+UPDATE publishers
+SET publisher_name = 'Sieam Publications',publisher_email='sieam@gmail.com', publisher_social_id='https://www.facebook.com/sieam'
+WHERE publisher_ID =1020;
+----------------------------------------------------------------------------
+
+create table carts
+(
+cart_id int not null primary key,
+cart_quantity number,
+book_id int,
+user_id int
+);
+
+create sequence seq_cart_id
+start with 50000
+increment by 1
+minvalue 50000
+maxvalue 100000
+nocache;
+
+insert into carts values (seq_cart_id.nextval, 1, 10001, 1);
+
+select * from carts;
+drop table carts;
+drop sequence seq_cart_id;
+
+DELETE FROM carts WHERE cart_id=50002;
+
+UPDATE carts
+SET cart_quantity=5
+WHERE cart_ID =50001;
+------------------------------------------------------------------------
+
+create table orders
+(order_id int not null primary key,
+status varchar2(15),
+price number,
+total number,
+due number,
+pay_type varchar2(20),
+order_date varchar2(30),
+user_id int,
+cart_id int 
+);
+
+create sequence seq_order_id
+start with 30000
+increment by 1
+minvalue 30000
+maxvalue 100000
+nocache;
+
+insert into orders values (seq_order_id.nextval, 'abcd', 500,500, 0, 'cash_on_delivery', '21-apr-2018',1,50001);
+
+select * from orders;
+drop table orders;
+drop sequence seq_order_id;
+
+DELETE FROM orders WHERE order_id=30002;
+
+UPDATE orders
+SET STATUS='mnop',PAY_TYPE='cash'
+WHERE order_ID =30001;
+-------------------------------------------------------------
+
+create table order_details
+(
+order_de_id int not null primary key,
+order_de_quantity number,
+order_id int,
+book_id int,
+user_id int
+);
+
+create sequence seq_order_de_id
+start with 70000
+increment by 1
+minvalue 70000
+maxvalue 80000
+nocache;
+
+insert into order_details values(seq_order_de_id.nextval, 3,30001,10001,1);
+
+select * from order_details;
+
+drop table order_details;
+drop sequence seq_order_de_id;
+
+DELETE FROM order_details WHERE order_de_id=70002;
+
+UPDATE order_details
+SET ORDER_DE_QUANTITY=9
+WHERE order_de_id =70001;
+
+------------------------------------------------------------------------------
+
+create table categorys
+(
+category_id int NOT NULL primary key ,
+category_name varchar2(50)
+);
+
+create sequence seq_category_id
+start with 3500
+increment by 1
+minvalue 3500
+maxvalue 4500
+nocache;
+
+insert into categorys values(seq_category_id.nextval,'science');
+
+select * from categorys;
+drop table categorys;
+drop sequence seq_category_id;
+
+DELETE FROM categorys WHERE category_id=3501;
+
+UPDATE categorys
+SET category_name='Arts'
+WHERE category_ID =3502;
+
+---------------------------------------------------------------------------
+
+create table sub_categorys
+(
+sub_category_id int NOT NULL primary key ,
+category_id int,
+sub_category_name varchar2(50)
+);
+
+create sequence seq_sub_category_id
+start with 4500
+increment by 1
+minvalue 4500
+maxvalue 5500
+nocache;
+
+insert into sub_categorys values(seq_sub_category_id.nextval,3500,'computer science');
+
+select * from sub_categorys;
+drop table sub_categorys;
+drop sequence seq_sub_category_id;
+
+DELETE FROM sub_categorys WHERE sub_category_id=4500;
+
+UPDATE sub_categorys
+SET sub_category_name='Eco arts'
+WHERE sub_category_ID =4502;
+----------------------------------------------------------------------------------------
+create table reviews
+(review_id int not null primary key,
+book_id int,
+user_id int,
+description varchar2(200),
+review_date varchar2(30)
+);
+
+
+create sequence seq_review_id
+start with 5500
+increment by 1
+minvalue 5500
+maxvalue 10500
+nocache;
+
+insert into reviews  values(seq_review_id.nextval,10001,1,'Programming Language Book', '21-apr-2018');
+
+select * from reviews;
+drop table reviews;
+drop sequence seq_review_id;
+
+DELETE FROM reviews WHERE review_id=5502;
+
+UPDATE reviews
+SET description='Something'
+WHERE review_ID =5501;
+----------------------------------------------------------------------------------

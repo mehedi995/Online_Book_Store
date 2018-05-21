@@ -1,0 +1,53 @@
+DECLARE
+   u_id  users.user_id%type; 
+   u_name  users.user_name%type;
+   u_email users.user_email%type;
+   u_phone users.user_phone%type; 
+  u_password users.password%type;
+  u_address users.user_address%type;
+  u_district users.user_district%type;
+  u_city users.user_city%type;
+  u_created_date users.created_date%type;
+  
+   
+   CURSOR u_users is 
+      SELECT u_id, u_name,  u_email, u_phone,u_password,  u_address, u_district, u_city,u_created_date FROM  users; 
+BEGIN 
+   OPEN u_users; 
+   LOOP 
+   FETCH u_users into u_id, u_name, u_email, u_phone,u_password,  u_address, u_district, u_city,u_created_date ; 
+      EXIT WHEN u_users%notfound; 
+      dbms_output.put_line(u_id || ' ' || u_name || ' ' || u_email || ' ' || u_phone || ' ' || u_password || ' ' || u_address || ' ' || u_district || ' ' || u_city || ' ' || u_created_date); 
+   END LOOP; 
+   CLOSE u_users; 
+END;
+/
+---------------------------------------------------------------------
+DECLARE
+   o_id orders.order_id%type; 
+   o_status orders.status%type;
+   o_price orders.price%type;
+   o_total orders.total%type; 
+   o_due orders.due%type;
+   o_pay_type orders.pay_type%type;
+   o_order_date orders.order_date%type;
+   o_user_id orders.user_id%type;
+   o_cart_id orders.cart_id%type;
+  
+   
+   CURSOR o_orders is 
+      SELECT o_id, o_status, o_price, o_total, o_due,  o_pay_type, o_order_date, o_user_id, o_cart_id FROM  orders; 
+BEGIN 
+   OPEN o_orders; 
+   LOOP 
+   FETCH o_orders into o_id, o_status, o_price, o_total, o_due,  o_pay_type, 
+         o_order_date, o_user_id, o_cart_id; 
+
+   EXIT WHEN o_orders%notfound;
+ 
+    dbms_output.put_line(o_id || ' ' || o_status || ' ' || o_price || ' ' || o_total || ' ' || o_due || ' ' || o_pay_type || ' ' ||
+                         o_order_date || ' ' || o_user_id || ' ' || o_cart_id); 
+   END LOOP; 
+   CLOSE o_orders; 
+END;
+/

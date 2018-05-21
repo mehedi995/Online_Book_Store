@@ -1,0 +1,32 @@
+create table authors
+(
+author_id int not null primary Key,
+author_name varchar2(50),
+author_email varchar2(30),
+author_phone varchar2(14),
+author_social_id varchar2(100)
+);
+
+insert into authors values(501,'Donal Norman','norman@gmail.com','01700000001','https://www.facebook.com/don.norman.18');
+insert into authors values(502,'P MAN','pman@gmail.com','01700000002','https://www.facebook.com/pman.18');
+insert into authors values(503,'Anisul Haq','anisul@gmail.com','01700000003','https://www.facebook.com/anis.haq');
+insert into authors values(504,'Samsul Haq','samsulhaq@gmail.com','01700000004','https://www.facebook.com/samsulhaq');
+insert into authors values(505,'Mostofa Jabbar','mjabbar@gmail.com','0170000005','https://www.facebook.com/jabbarm');
+insert into authors values(506,'Zafar Iqbal','zafariqbal@gmail.com','01700000006','https://www.facebook.com/jafariqbal');
+insert into authors values(507,'Imdadul Haq','imdadul@gmail.com','01700000007','https://www.facebook.com/milonimdadul');
+insert into authors values(508,'Paramita Him','paramita@gmail.com','01700000008','https://www.facebook.com/him.paramita');
+insert into authors values(509,'Kazi Nazrul Islam','kazi@gmail.com','01700000008','https://www.facebook.com/kazi');
+insert into authors values(510,'Robindro Nath Thakur','robi@gmail.com','0170000008','https://www.facebook.com/robi');
+
+
+select * from authors
+
+
+insert into publishers values(seq_publisher_id.nextval,'Banglabazar Publications','rimu@publications.com','01702300001','BanglaBazar, Dhaka','https://www.facebook.com/rimuahmmed.raj');
+insert into publishers values(seq_publisher_id.nextval,'Prothoma Publications','Prothoma@publications.com','01702300001','BanglaBazar, Dhaka','https://www.facebook.com/rimuahmmed.raj');
+insert into publishers values(seq_publisher_id.nextval,'Maggrath-Hill Publications','mag@publications.com','01702300001',' California, USA','https://www.facebook.com/rimuahmmed.raj');
+insert into publishers values(seq_publisher_id.nextval,'Jupiter Publications','jupiter@publications.com','01702300001','BanglaBazar, Dhaka','https://www.facebook.com/rimuahmmed.raj');
+insert into publishers values(seq_publisher_id.nextval,'Seba Publications','seba@publications.com','01702300001','BanglaBazar, Dhaka','https://www.facebook.com/rimuahmmed.raj');
+
+
+select * from publishers;

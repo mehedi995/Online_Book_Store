@@ -1,0 +1,21 @@
+CREATE OR REPLACE TRIGGER t
+  BEFORE
+    INSERT OR
+    UPDATE OR
+    DELETE
+  ON employees
+BEGIN
+  CASE
+    WHEN INSERTING THEN
+      DBMS_OUTPUT.PUT_LINE('Inserting');
+    WHEN UPDATING THEN
+      DBMS_OUTPUT.PUT_LINE('Updating');
+    WHEN DELETING THEN
+      DBMS_OUTPUT.PUT_LINE('Deleting');
+  END CASE;
+END;
+/
+
+delete from regions where region_id=6;
+
+select * from regions

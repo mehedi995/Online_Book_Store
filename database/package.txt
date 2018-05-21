@@ -1,0 +1,57 @@
+create or replace package users_pack as 
+procedure insert_users(u_id  users.user_id%type, u_name  users.user_name%type,
+u_email users.user_email%type, u_phone users.user_phone%type, u_password users.password%type,
+u_address users.user_address%type, u_district users.user_district%type, 
+u_city users.user_city%type, u_created_date users.created_date%type);
+
+procedure del_users(u_id  users.user_id%type);
+procedure show_users;
+end users_pack;
+
+
+package body:
+
+create or replace package body users_pack as 
+procedure insert_users(u_id  users.user_id%type, u_name  users.user_name%type,
+u_email users.user_email%type, u_phone users.user_phone%type, u_password users.password%type, 
+u_address users.user_address%type, u_district users.user_district%type, u_city users.user_city%type,
+u_created_date users.created_date%type) is
+
+begin
+insert into users values(seq_user_id.nextval, 'mehedi', 'hmehedi995@gmail.com', '01764760509','1234','uttora,dhaka','dhaka','dhaka','21-apr-2018');
+end insert_users;
+-----------------------------------------------------------------------------------------------------------------------------
+delete:
+
+procedure del_users(u_id users.user_id%type) is 
+begin
+delete from users where user_id = u_id;
+end del_users;
+--------------------------------------------------------------------------------------------
+procedure show_users is
+cursor users_cur is select * from users;
+begin
+dbms_output.put_line('user_id user_name user_email user_phone password user_address user_district user_city created_date');
+for users_record in users_cur loop
+dbms_output.put_line(users_record.user_id || ' ' || users_record.user_name || ' ' ||users_record.user_email || ' ' || users_record.user_phone || ' ' || users_record.password 
+|| ' ' || users_record.user_address || ' ' || users_record.user_district || ' ' || users_record.user_city || ' ' || users_record.created_date);
+
+end loop;
+end show_users;
+
+end users_pack;
+--------------------------------------------------------------------------------------
+Annonomus block:
+
+begin
+users_pack.show_users;
+end;
+/
+-------------------------------------------------------------------------------------------
+delete:
+
+begin
+users_pack.show_users;
+users_pack.del_users('CA');
+users_pack.show_users;
+end;

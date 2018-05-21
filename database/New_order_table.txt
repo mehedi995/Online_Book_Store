@@ -1,0 +1,22 @@
+create table orders(order_id number not null primary key,
+book_id number,
+book_name varchar2(200),
+price number(6),
+quantity number(4),
+total number(6),
+user_email varchar2(50),
+order_date timestamp
+);
+
+describe users;
+
+
+drop sequence seq_order_id;
+
+create sequence seq_order_id
+start with 30000
+increment by 1
+minvalue 30000
+maxvalue 100000
+nocache;
+insert into orders values (seq_order_id.nextval,10001, 'abcd', 500,1, 1, 'cash_on@delivery', '21-apr-2018')

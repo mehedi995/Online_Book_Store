@@ -1,0 +1,32 @@
+DECLARE
+  
+   CURSOR users_cur is 
+      SELECT user_id, user_name,  user_email, user_phone,password,  user_address, user_district, user_city,created_date FROM  users; 
+users_record users_cur%rowtype;
+BEGIN 
+   OPEN users_cur; 
+   LOOP 
+   FETCH users_cur into users_record ; 
+      EXIT WHEN users_cur%notfound; 
+      dbms_output.put_line(users_record.user_id || ' ' || users_record.user_name || ' ' ||users_record.user_email || ' ' || users_record.user_phone || ' ' || users_record.password 
+|| ' ' || users_record.user_address || ' ' || users_record.user_district || ' ' || users_record.user_city || ' ' || users_record.created_date); 
+   END LOOP; 
+END;
+/
+---------------------------------------------------------------------
+DECLARE
+   
+   CURSOR orders_cur is 
+      SELECT order_id, status, price, total, due,  pay_type, order_date, user_id, cart_id FROM  orders; 
+orders_record orders_cur%rowtype;
+BEGIN 
+   OPEN orders_cur; 
+   LOOP 
+   FETCH orders_cur into orders_record;
+   EXIT WHEN orders_cur%notfound;
+ 
+    dbms_output.put_line(orders_record.order_id || ' ' || orders_record.status || ' ' || orders_record.price || ' ' || orders_record.total || ' ' ||
+ orders_record.due || ' ' || orders_record.pay_type || ' ' || orders_record.order_date || ' ' || orders_record.user_id || ' ' || orders_record.cart_id); 
+   END LOOP; 
+END;
+/
